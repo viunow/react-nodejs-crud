@@ -1,4 +1,4 @@
-# CRUD usuário com ReactJS, NodeJS, MySql e Express.
+# CRUD usuário com ReactJS, NodeJS, MySQL e ExpressJS.
 
 O backend está pronto e funcional, podendo ser testado pelo Postman através das rotas a seguir:
 
