@@ -1,8 +1,10 @@
 const db = require("../models");
 const Cadastro = db.cadastros;
 const Op = db.Sequelize.Op;
+const fs = require("fs");
 
 exports.create = (req, res) => {
+  console.log(req.body);
   if (!req.body.nome) {
     res.status(400).send({
       message: "Campo nao pode ser vazio!"
@@ -10,14 +12,12 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Criando um usuario
   const cadastro = {
     nome: req.body.nome,
     dataNascimento: req.body.dataNascimento,
-    foto: req.body.foto ? req.body.foto : false
+    // foto: req.body.foto ? req.body.foto : false
   };
 
-  // Salvando um usuario no banco de dados
   Cadastro.create(cadastro)
     .then(data => {
       res.send(data);

@@ -1,9 +1,13 @@
 const express = require('express');
+// const fileUpload = require('express-fileupload');
+// fileUpload = require('express-fileupload');
+// app.use(fileUpload());
 const cors = require('cors');
 
 const app = express();
 
 const db = require("./app/models");
+
 db.sequelize.sync();
 
 var corsOptions = {
@@ -16,8 +20,9 @@ app.use(express.json());
 
 app.use(express.urlencoded({extended: false}));
 
+
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the home page." });
+  res.json({ message: "Welcome to the api." });
 });
 
 app.get("/api", (req, res) => {
