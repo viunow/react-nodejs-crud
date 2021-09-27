@@ -32,5 +32,3 @@ server: backend
 
 O servidor estará rodando na porta 8080 ou padrão.
 o client estará rodando na porta 3000 ou padrão.
-
-O frontend foi conectado com o backend, só não foi finalizado por completo.
