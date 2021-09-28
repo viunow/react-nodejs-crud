@@ -9,8 +9,8 @@ class UsuarioDataService {
     return http.get(`/cadastros/${id}`);
   }
 
-  create(data) {
-    return http.post("/cadastros", data);
+  create(data, options) {
+    return http.post("/cadastros", data, options);
   }
 
   update(id, data) {
@@ -31,7 +31,7 @@ class UsuarioDataService {
 
   // upload(file, onUploadProgress) {
   //   let formData = new formData();
-    
+
   //   formData.append("file", file);
 
   //   return http.post("/cadastros", formData, {

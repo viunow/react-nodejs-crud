@@ -34,31 +34,42 @@ export default class AddUsuario extends Component {
 
   onChangeFoto(e) {
     this.setState({
-      foto: e.target.files
+      foto: e.target.files[0]
     });
   }
 
-  saveUsuario() {
-    var data = {
-      nome: this.state.nome,
-      dataNascimento: this.state.dataNascimento,
-      foto: this.state.foto,
-    };
+  async saveUsuario(event) {
+    event.preventDefault();
 
-    UsuarioDataService.create(data)
-      .then(response => {
-        this.setState({
-          id: response.data.id,
-          nome: response.data.nome,
-          dataNascimento: response.data.dataNascimento,
-          foto: response.data.foto,
+    const formData = new FormData();
+    formData.append('nome', this.state.nome);
+    formData.append('dataNascimento', this.state.dataNascimento);
 
-          submitted: true
-        });
-      })
-      .catch(e => {
-        console.log(e);
+    // Quando tem fotos.
+    if (this.state.foto) {
+      formData.append('foto', this.state.foto);
+    }
+
+    let response
+
+    try {
+      response = await UsuarioDataService.create(formData, {
+        "Content-Type": "multipart/form-data"
       });
+    } catch(error) {
+      console.error(error);
+
+      throw error;
+    }
+
+    this.setState({
+      id: response.data.id,
+      nome: response.data.nome,
+      dataNascimento: response.data.dataNascimento,
+      foto: response.data.foto,
+
+      submitted: true
+    });
   }
 
   novoUsuario() {
@@ -79,7 +90,7 @@ export default class AddUsuario extends Component {
           <div>
             <h4>Usuário cadastrado com sucesso!</h4>
             <button className="btn btn-success" onClick={this.novoUsuario}>
-              Add
+              Adicionar novo usuário
             </button>
           </div>
         ) : (
@@ -97,7 +108,7 @@ export default class AddUsuario extends Component {
               />
             </div>
             <br/>
-            
+
             <div className="form-group">
               <label htmlFor="dataNascimento">Data de Nascimento</label>
               <input
@@ -111,12 +122,8 @@ export default class AddUsuario extends Component {
               />
             </div>
             <br/>
-            
-            <form 
-              action="/upload" 
-              method="POST"
-              enctype="multipart/form-data"
-            >
+
+            <form action="/resources/uploads" method="POST">
               <div className="form-group">
                 <label htmlFor="foto">Foto</label>
                 <input
@@ -131,7 +138,7 @@ export default class AddUsuario extends Component {
               </div>
             </form>
             <br/>
-            
+
             <button onClick={this.saveUsuario} className="btn btn-success">
               Cadastrar
             </button>

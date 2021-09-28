@@ -18,17 +18,10 @@ export default class UserApi {
 	}
 
 	static getAll(payload, parameters) {
-		// deveria ser:
-		// return UserApi.client.post(`usuarios`, payload, parameters);
-
-		// mas ta assim
 		return UserApi.client.get(`cadastros`, payload, parameters);
 	}
 
 	static post(payload, parameters) {
-		// deveria ser:
-		// return UserApi.client.post(`usuarios`, payload, parameters);
-
 		return UserApi.client.post(`cadastros`, payload, parameters);
 	}
 }

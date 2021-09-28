@@ -4,18 +4,20 @@ const Op = db.Sequelize.Op;
 const fs = require("fs");
 
 exports.create = (req, res) => {
-  console.log(req.body);
   if (!req.body.nome) {
     res.status(400).send({
-      message: "Campo nao pode ser vazio!"
+      message: "Campo nome não pode ser vazio!"
     });
+
     return;
   }
 
   const cadastro = {
     nome: req.body.nome,
     dataNascimento: req.body.dataNascimento,
-    // foto: req.body.foto ? req.body.foto : false
+    foto: req.body.foto
+      ? req.body.foto
+      : (req.file ? req.file : false)
   };
 
   Cadastro.create(cadastro)

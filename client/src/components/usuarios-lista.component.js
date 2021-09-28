@@ -19,8 +19,6 @@ export default class UsuariosLista extends Component {
       buscarNome: ""
     };
   }
-
-  
   
   componentDidMount() {
     this.retornarUsuarios();
@@ -170,7 +168,7 @@ export default class UsuariosLista extends Component {
             </div>
           ) : (
             <div>
-              <br />
+              {/* <br /> */}
               <p>Clique em um usuario para editar.</p>
             </div>
           )}

@@ -1,10 +1,15 @@
-module.exports = app => {
-  const cadastros = require("../controllers/cadastro.controller");
+const cadastros = require("../controllers/cadastro.controller");
+const router = require("express").Router();
 
-  var router = require("express").Router();
+const uploadHandler = require('../middleware/upload-image-handler');
+// const upload = multer({ dest: './resources/static/assets/tmp' });
 
+/**
+ * @param {core.Express} app
+ */
+module.exports = (app) => {
   // Criar um novo usuario
-  router.post("/", cadastros.create);
+  router.post("/", uploadHandler.single('foto'), cadastros.create);
 
   // Retornar todos os cadastros
   router.get("/", cadastros.findAll);

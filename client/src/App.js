@@ -13,17 +13,17 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/usuarios"} className="navbar-brand">
-            CRUD App
+            Cadastro de usuários
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/usuarios"} className="nav-link">
-                Usuários
+                Lista de usuários
               </Link>
             </li>
             <li className="nav-item">
               <Link to={"/add"} className="nav-link">
-                Add usuário
+                Adicionar usuário
               </Link>
             </li>
           </div>
